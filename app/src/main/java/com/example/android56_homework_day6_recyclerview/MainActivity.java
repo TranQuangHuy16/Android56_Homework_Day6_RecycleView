@@ -47,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClickListener(int position, Product product) {
                 Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
-                intent.putExtra("product_detail", product);
+                intent.putExtra("title", product.getTitle());
+                intent.putExtra("description", product.getDescription());
+                intent.putExtra("price", product.getPrice());
+                intent.putExtra("rating", product.getRating());
+                intent.putExtra("reviews", product.getReviews());
+                intent.putExtra("imageResId", product.getImageResId());
+                Log.d(TAG, "onItemClickListener: " + product.getTitle());
                 startActivity(intent);
             }
 

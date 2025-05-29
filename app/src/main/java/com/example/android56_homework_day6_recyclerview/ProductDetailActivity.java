@@ -27,7 +27,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Product product = (Product) getIntent().getSerializableExtra("product_detail");
+        String title = getIntent().getStringExtra("title");
+        String description = getIntent().getStringExtra("description");
+        int price = getIntent().getIntExtra("price", 0);
+        float rating = getIntent().getFloatExtra("rating", 0);
+        int reviews = getIntent().getIntExtra("reviews", 0);
+        String imageResId = getIntent().getStringExtra("imageResId");
 
         ImageView imgProduct = findViewById(R.id.imgProduct);
         TextView txtTitle = findViewById(R.id.txtTitle);
@@ -36,15 +41,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         TextView txtReviews = findViewById(R.id.txtReviews);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
 
-        if (product != null) {
-            txtTitle.setText(product.getTitle());
-            txtDescription.setText(product.getDescription());
-            txtPrice.setText("₹" + product.getPrice());
-            ratingBar.setRating(product.getRating());
-            txtReviews.setText("(" + product.getReviews() + ")");
+            txtTitle.setText(title);
+            txtDescription.setText(description);
+            txtPrice.setText(price);
+            ratingBar.setRating(rating);
+            txtReviews.setText(reviews);
             Glide.with(this)
-                    .load(product.getImageResId())  // URL hoặc đường dẫn ảnh
+                    .load(imageResId)  // URL hoặc đường dẫn ảnh
                     .into(imgProduct);
-        }
+
     }
 }
